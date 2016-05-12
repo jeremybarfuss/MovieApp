@@ -1,6 +1,7 @@
 package ch.hearc.ig.odi.movieapp.business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *Classe métier de personne.
@@ -11,7 +12,7 @@ public class Movie {
     private long id;
     private String name;
     private String producer;
-    private ArrayList<Person> persons;
+    HashMap<Long, Person> persons;
 
     /**
      * Constructeur de film
@@ -50,25 +51,43 @@ public class Movie {
         this.producer = producer;
     }
 
-    public ArrayList<Person> getPersons() {
+    /**
+     * Renvoie les films vus par la personne
+     *
+     * @return Films vus par la personne
+     */
+    public HashMap<Long, Person> getPerons() {
         return persons;
     }
-    
+
     /**
-     * Ajout d'une personne au film
+     * Modifie les personnes ayant vus le film
      *
-     * @param personToAdd Nouvel personne à ajouter au film
+     * @param persons Listes des nouvelles personnes
      */
-    public void addPerson(Person personToAdd){
-        persons.add(personToAdd);
+    public void setMovies(HashMap<Long, Person> persons) {
+        this.persons = persons;
     }
-    
+
     /**
-     * Suppression d'une personne au film
+     * Renvoie une personne par son identifiant
      *
-     * @param personToRemove Personne à supprimer au film
+     * @param id Identifiant de la personne
+     * @return Personne correspondant à l'identifiant
      */
-    public void removePerson(Person personToRemove){
-        persons.remove(personToRemove);
+    public Person getPersonById(long id) {
+        return this.persons.get(id);
+    }
+
+    /**
+     * Ajoute une personne à un film
+     *
+     * @param person Film à ajouter
+     */
+    public void addPerson(Person person) {
+        if(this.persons.get(person.getId()) == null) {
+            this.persons.put(person.getId(), person);
+            person.addMovie(this);
+        }
     }
 }
