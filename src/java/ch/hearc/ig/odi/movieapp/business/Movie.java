@@ -52,16 +52,16 @@ public class Movie {
     }
 
     /**
-     * Renvoie les films vus par la personne
+     * Renvoie les personnes ayant vu le film
      *
-     * @return Films vus par la personne
+     * @return Liste de personnes
      */
     public HashMap<Long, Person> getPerons() {
         return persons;
     }
 
     /**
-     * Modifie les personnes ayant vus le film
+     * Modifie les personnes ayant vu le film
      *
      * @param persons Listes des nouvelles personnes
      */
@@ -82,7 +82,7 @@ public class Movie {
     /**
      * Ajoute une personne à un film
      *
-     * @param person Film à ajouter
+     * @param person Personne à ajouter au film
      */
     public void addPerson(Person person) {
         if(this.persons.get(person.getId()) == null) {
