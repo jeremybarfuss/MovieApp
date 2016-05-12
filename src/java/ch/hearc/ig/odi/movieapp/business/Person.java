@@ -1,5 +1,7 @@
 package ch.hearc.ig.odi.movieapp.business;
 
+import java.util.HashMap;
+
 /**
  * Classe métier de personne.
  *
@@ -11,6 +13,7 @@ public class Person {
     private long id;
     private String firstName;
     private String lastName;
+    HashMap<Long, Movie> movies;
 
     /**
      * Constructeur de personne
@@ -77,5 +80,45 @@ public class Person {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    /**
+     * Renvoie les films vus par la personne
+     *
+     * @return Films vus par la personne
+     */
+    public HashMap<Long, Movie> getMovies() {
+        return movies;
+    }
+
+    /**
+     * Modifie les films vus par la personne
+     *
+     * @param movies Nouveaux films vu par la personne
+     */
+    public void setMovies(HashMap<Long, Movie> movies) {
+        this.movies = movies;
+    }
+
+    /**
+     * Renvoie un film par son identifiant
+     *
+     * @param id Identifiant du film
+     * @return Film correspondant à l'identifiant
+     */
+    public Movie getMovieById(long id) {
+        return this.movies.get(id);
+    }
+
+    /**
+     * Ajoute un film
+     *
+     * @param movie Film à ajouter
+     */
+    public void addMovie(Movie movie) {
+        if(this.movies.get(movie.getId()) == null) {
+            this.movies.put(movie.getId(), movie);
+            movie.addPerson(this);
+        }
     }
 }
