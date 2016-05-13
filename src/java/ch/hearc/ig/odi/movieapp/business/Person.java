@@ -27,6 +27,7 @@ public class Person {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.movies = new HashMap<>();
     }
 
     /**
@@ -115,6 +116,7 @@ public class Person {
      * Ajoute un film
      *
      * @param movie Film à ajouter
+     * @throws ch.hearc.ig.odi.movieapp.exception.UniqueException
      */
     public void addMovie(Movie movie) throws UniqueException {
         if (this.movies.get(movie.getId()) == null) {
