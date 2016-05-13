@@ -1,5 +1,6 @@
 package ch.hearc.ig.odi.movieapp.business;
 
+import ch.hearc.ig.odi.movieapp.exception.UniqueException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -84,10 +85,12 @@ public class Movie {
      *
      * @param person Personne à ajouter au film
      */
-    public void addPerson(Person person) {
+    public void addPerson(Person person) throws UniqueException {
         if(this.persons.get(person.getId()) == null) {
             this.persons.put(person.getId(), person);
             person.addMovie(this);
+        } else {
+            throw new UniqueException();
         }
     }
 }
