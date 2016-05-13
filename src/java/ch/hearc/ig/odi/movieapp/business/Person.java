@@ -1,5 +1,6 @@
 package ch.hearc.ig.odi.movieapp.business;
 
+import ch.hearc.ig.odi.movieapp.exception.UniqueException;
 import java.util.HashMap;
 
 /**
@@ -115,10 +116,12 @@ public class Person {
      *
      * @param movie Film à ajouter
      */
-    public void addMovie(Movie movie) {
-        if(this.movies.get(movie.getId()) == null) {
+    public void addMovie(Movie movie) throws UniqueException {
+        if (this.movies.get(movie.getId()) == null) {
             this.movies.put(movie.getId(), movie);
             movie.addPerson(this);
+        } else {
+            throw new UniqueException();
         }
     }
 }
