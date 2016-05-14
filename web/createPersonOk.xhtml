@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title><h:outputText value="#{msg.ajouterPersonne}" /></title>
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+    </h:head>
+    <h:body>
+        <div id="top">
+            <ui:insert name="top"><h:outputText value="#{msg.valide}" /></ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <h:outputText value="#{msg.confCreationPers}" />
+            <br />
+            <br />
+            <h:form>
+                <h:commandButton action="back" value="#{msg.retourPageAcc}" />
+            </h:form>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">ODI</ui:insert>
+        </div>
+    </h:body>
+</html>

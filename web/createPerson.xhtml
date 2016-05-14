@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title><h:outputText value="#{msg.ajouterPersonne}" /></title>
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+    </h:head>
+    <h:body>
+        <div id="top">
+            <ui:insert name="top"><h:outputText value="#{msg.ajouterPersonne}" /></ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <h:form>
+
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{msg.id} : " for="id" />
+                    <h:inputText id="id" required="true" requiredMessage="#{msg.numRequis}" value="#{createPersonBean.id}" />
+                    <h:outputLabel value="#{msg.nom} : " for="nom" />
+                    <h:inputText id="nom" required="true" requiredMessage="#{msg.nomRequis}" value="#{createPersonBean.lastName}" />
+                    <h:outputLabel value="#{msg.prenom} : " for="prenom" />
+                    <h:inputText id="prenom" required="true" requiredMessage="#{msg.prenomRequis}" value="#{createPersonBean.firstName }" />
+                </h:panelGrid>
+                <h:commandButton type="reset" value="#{msg.reinit}" />
+                <h:commandButton action="#{createPersonBean.addPerson()}" value="#{msg.valider}" />
+            </h:form>
+
+            <h:form>
+                <h:commandButton action="annuler" value="#{msg.annuler}" />
+            </h:form>
+            <h:messages />
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">ODI</ui:insert>
+        </div>
+    </h:body>
+</html>
