@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 
@@ -32,6 +30,7 @@ public class Services implements Serializable {
      * avoir des données de test.
      */
     public Services() {
+        System.out.println("new class services");
         people = new LinkedHashMap<>();
         people.put(1l, new Person(1l, "Lara", "Clette"));
         people.put(2l, new Person(2l, "Homer", "Dalors"));
@@ -91,6 +90,10 @@ public class Services implements Serializable {
     public List<Person> getPeopleList() {
         return new ArrayList(people.values());
     }
+    
+    public Person getPersonById(Long id) {
+        return people.get(id);
+    }
 
     /**
      * Retourne une List contenant tous les films du système Utile pour
@@ -100,5 +103,45 @@ public class Services implements Serializable {
      */
     public List<Movie> getMoviesList() {
         return new ArrayList(movies.values());
+    }
+    
+    public Movie getMovieById(Long id) {
+        return movies.get(id);
+    }
+
+    /**
+     * Ajoute une personne à la collection de personne
+     *
+     * @param id Identifiant de la personne
+     * @param firstName Prénom de la personne
+     * @param lastName Nom de la personne
+     */
+    public void addPerson(long id, String firstName, String lastName) {
+        people.put(id, new Person(id, firstName, lastName));
+    }
+
+    /**
+     * Ajoute un film à la collection de films
+     *
+     * @param id Identifiant du film
+     * @param name Nom du film
+     * @param producer Producteur du film
+     */
+    public void addMovie(long id, String name, String producer) {
+        movies.put(id, new Movie(id, name, producer));
+    }
+
+    /**
+     * Assigne un film à une personne
+     *
+     * @param person Personne à assigner
+     * @param movie Film à assigner
+     */
+    public void assignMovie(Person person, Movie movie) throws UniqueException {
+        try {
+            people.get(person.getId()).addMovie(movie);
+        } catch (UniqueException ex) {
+            throw new UniqueException();
+        }
     }
 }

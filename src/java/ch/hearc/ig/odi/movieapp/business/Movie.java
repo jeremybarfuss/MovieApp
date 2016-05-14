@@ -26,6 +26,7 @@ public class Movie {
         this.id = id;
         this.name = name;
         this.producer = producer;
+        this.persons = new HashMap<>();
     }
 
     public long getId() {
@@ -88,7 +89,6 @@ public class Movie {
     public void addPerson(Person person) throws UniqueException {
         if(this.persons.get(person.getId()) == null) {
             this.persons.put(person.getId(), person);
-            person.addMovie(this);
         } else {
             throw new UniqueException();
         }
