@@ -60,4 +60,14 @@ public class PersonDetailsBean implements Serializable {
         return services.getMoviesList();
     }
 
+
+    public String showPerson(Person person) {
+        if(person != null) {
+            this.person = person;
+            return "personDetails";
+        } else {
+            this.person = null;
+            return "error";
+        }
+    }
 }

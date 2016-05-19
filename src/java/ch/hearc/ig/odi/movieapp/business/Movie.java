@@ -90,7 +90,7 @@ public class Movie {
         if(this.persons.get(person.getId()) == null) {
             this.persons.put(person.getId(), person);
         } else {
-            throw new UniqueException();
+            throw new UniqueException("Cette personne a déjà vu ce film");
         }
     }
 }

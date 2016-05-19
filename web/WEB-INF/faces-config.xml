@@ -24,6 +24,10 @@
             <to-view-id>/personDetails.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>movieDetails</from-outcome>
+            <to-view-id>/movieDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>addPerson</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
@@ -35,6 +39,22 @@
     
     <navigation-rule>
         <from-view-id>/personDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>movieDetails</from-outcome>
+            <to-view-id>/movieDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/movieDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>personDetails</from-outcome>
+            <to-view-id>/personDetails.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-outcome>back</from-outcome>
             <to-view-id>/home.xhtml</to-view-id>
