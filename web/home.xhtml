@@ -32,10 +32,7 @@
                         <h:outputText value="#{msg.prenom}" />
                     </f:facet>
                     <h:form>
-                        <h:commandLink action="personDetails"> 
-                            <h:outputText value="#{person.firstName}" />
-                            <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
-                        </h:commandLink>
+                        <h:commandLink value="#{person.firstName}" action="#{personDetailsBean.showPerson(person)}" />
                     </h:form>
                 </h:column>
                 <h:column>
@@ -43,10 +40,7 @@
                         <h:outputText value="#{msg.nom}" />
                     </f:facet>
                     <h:form>
-                        <h:commandLink action="personDetails"> 
-                            <h:outputText value="#{person.lastName}" />
-                            <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
-                        </h:commandLink>
+                        <h:commandLink value="#{person.lastName}" action="#{personDetailsBean.showPerson(person)}" />
                     </h:form>
                 </h:column>
                 <h:column>
@@ -74,10 +68,7 @@
                         <h:outputText value="#{msg.nom}" />
                     </f:facet>
                     <h:form>
-                        <h:commandLink action="movieDetails">
-                            <h:outputText value="#{movie.name}" />
-                            <f:actionListener binding="#{movieDetailsBean.setMovie(movie)}" />
-                        </h:commandLink>
+                        <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
                     </h:form>
                 </h:column>
                 <h:column>

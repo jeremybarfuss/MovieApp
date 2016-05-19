@@ -38,10 +38,7 @@
                         <h:outputText value="#{msg.nom}" />
                     </f:facet> 
                     <h:form>
-                        <h:commandLink action="movieDetails">
-                            <h:outputText value="#{movie.name}" />
-                            <f:actionListener binding="#{movieDetailsBean.setMovie(movie)}" />
-                        </h:commandLink>
+                        <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
                     </h:form>
                 </h:column>
                 <h:column>
