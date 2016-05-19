@@ -1,5 +1,6 @@
 package ch.hearc.ig.odi.movieapp.presentation.beans;
 
+import ch.hearc.ig.odi.movieapp.business.Movie;
 import ch.hearc.ig.odi.movieapp.business.Person;
 import ch.hearc.ig.odi.movieapp.services.Services;
 import java.io.Serializable;
@@ -33,6 +34,15 @@ public class HomeBean implements Serializable {
      */
     public List<Person> getPersons() {
         return services.getPeopleList();
+    }
+
+    /**
+     * Renvoie la liste des films
+     *
+     * @return Liste des films
+     */
+    public List<Movie> getMovies() {
+        return services.getMoviesList();
     }
 
 }

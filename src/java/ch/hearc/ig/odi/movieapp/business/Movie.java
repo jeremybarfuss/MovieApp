@@ -58,7 +58,7 @@ public class Movie {
      *
      * @return Liste de personnes
      */
-    public HashMap<Long, Person> getPerons() {
+    public HashMap<Long, Person> getPersons() {
         return persons;
     }
 

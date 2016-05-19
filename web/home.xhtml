@@ -21,45 +21,82 @@
         <div id="content" class="center_content">
             <h2><h:outputText value="#{msg.listePersonnes}" /></h2>
             <h:dataTable value="#{homeBean.persons}" var="person">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.id}" />
-                        </f:facet>
-                        <h:outputText value="#{person.id}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.prenom}" />
-                        </f:facet>
-                        <h:form>
-                            <h:commandLink action="personDetails"> 
-                                <h:outputText value="#{person.firstName}" />
-                                <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
-                            </h:commandLink>
-                        </h:form>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.nom}" />
-                        </f:facet>
-                        <h:form>
-                            <h:commandLink action="personDetails"> 
-                                <h:outputText value="#{person.lastName}" />
-                                <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
-                            </h:commandLink>
-                        </h:form>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.nbFilm}" />
-                        </f:facet>
-                        <h:outputText value="#{person.movies.size()}" />
-                    </h:column>
-                </h:dataTable>
-                <br />
-                <h:form>
-                    <h:commandButton action="addPerson" value="#{msg.ajouterPerson}" />
-                </h:form>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.id}" />
+                    </f:facet>
+                    <h:outputText value="#{person.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.prenom}" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink action="personDetails"> 
+                            <h:outputText value="#{person.firstName}" />
+                            <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.nom}" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink action="personDetails"> 
+                            <h:outputText value="#{person.lastName}" />
+                            <f:actionListener binding="#{personDetailsBean.setPerson(person)}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.nbFilm}" />
+                    </f:facet>
+                    <h:outputText value="#{person.movies.size()}" />
+                </h:column>
+            </h:dataTable>
+            <br />
+            <h:form>
+                <h:commandButton action="addPerson" value="#{msg.ajouterPerson}" />
+            </h:form>
+
+            <h2><h:outputText value="#{msg.listeFilm}" /></h2>
+            <h:dataTable value="#{homeBean.movies}" var="movie">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.id}" />
+                    </f:facet>
+                    <h:outputText value="#{movie.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.nom}" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink action="movieDetails">
+                            <h:outputText value="#{movie.name}" />
+                            <f:actionListener binding="#{movieDetailsBean.setMovie(movie)}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.producteur}" />
+                    </f:facet>
+                    <h:outputText value="#{movie.producer}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.nbPersonne}" />
+                    </f:facet>
+                    <h:outputText value="#{movie.persons.size()}" />
+                </h:column>
+            </h:dataTable>
+            <br />
+            <h:form>
+                <h:commandButton action="addMovie" value="#{msg.ajouterFilm}" /><br />
+            </h:form>
         </div>
 
         <div id="bottom">
