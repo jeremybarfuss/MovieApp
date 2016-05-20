@@ -28,30 +28,41 @@
 
                 <h2><h:outputText value="#{msg.listePersVuFilm}" /></h2>
 
-                <h:dataTable value="#{movieDetailsBean.persons}" var="person">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.id}" />
-                        </f:facet>
-                        <h:outputText value="#{person.id}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.prenom}" />
-                        </f:facet> 
-                        <h:form>
+                <h:form>
+                    <h:dataTable value="#{movieDetailsBean.persons}" var="person">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.id}" />
+                            </f:facet>
+                            <h:outputText value="#{person.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.prenom}" />
+                            </f:facet> 
                             <h:commandLink value="#{person.firstName}" action="#{personDetailsBean.showPerson(person)}" />
-                        </h:form>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg.nom}" />
-                        </f:facet> 
-                        <h:form>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.nom}" />
+                            </f:facet> 
                             <h:commandLink value="#{person.lastName}" action="#{personDetailsBean.showPerson(person)}" />
-                        </h:form>
-                    </h:column>
-                </h:dataTable>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="X">
+                                 <f:ajax event="click" render="@form" listener="#{movieDetailsBean.removePerson(person)}" />
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                    <br />
+                    <h:outputText value="#{msg.ajoutPersonListe}" />
+                    <h:selectOneMenu id="personToAssign" value="#{movieDetailsBean.personToAssign}" converter="#{personLOVConverter}">
+                        <f:selectItems value="#{movieDetailsBean.unseenPersons}" var="person" itemValue="#{person}" />
+                    </h:selectOneMenu>
+                    <h:commandButton id="submit" value="#{msg.ajouter}"> 
+                        <f:ajax event="click" execute="personToAssign" render="@form" listener="#{movieDetailsBean.assignPerson()}" />
+                    </h:commandButton>
+                </h:form>
 
                 <br />
                 <h:form>

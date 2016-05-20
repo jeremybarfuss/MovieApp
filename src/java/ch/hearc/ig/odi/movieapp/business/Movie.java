@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *Classe métier de personne.
- * 
+ * Classe métier de personne.
+ *
  * @author steven.habegger
  */
 public class Movie {
+
     private long id;
     private String name;
     private String producer;
@@ -87,10 +88,26 @@ public class Movie {
      * @param person Personne à ajouter au film
      */
     public void addPerson(Person person) throws UniqueException {
-        if(this.persons.get(person.getId()) == null) {
+        if (this.persons.get(person.getId()) == null) {
             this.persons.put(person.getId(), person);
         } else {
             throw new UniqueException("Cette personne a déjà vu ce film");
         }
     }
+
+    public void removePerson(Person person) throws UniqueException {
+        if (this.persons.get(person.getId()) != null) {
+            this.persons.remove(person.getId());
+        } else {
+            throw new UniqueException("Cette personne n'a pas vu ce film");
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return this.id + " - " + this.name;
+    }
+    
+    
 }

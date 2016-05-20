@@ -2,10 +2,13 @@ package ch.hearc.ig.odi.movieapp.presentation.beans;
 
 import ch.hearc.ig.odi.movieapp.business.Movie;
 import ch.hearc.ig.odi.movieapp.business.Person;
+import ch.hearc.ig.odi.movieapp.exception.UniqueException;
 import ch.hearc.ig.odi.movieapp.services.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -23,6 +26,7 @@ public class PersonDetailsBean implements Serializable {
     @Inject
     Services services;
     private Person person;
+    private Movie movieToAssign;
 
     /**
      * Constructeur par défaut du bean
@@ -51,22 +55,53 @@ public class PersonDetailsBean implements Serializable {
     public List<Movie> getMovies() {
         return new ArrayList(this.person.getMovies().values());
     }
-/**
-     * Renvoie la liste des films
-     *
-     * @return Liste des films
-     */
-    public List<Movie> getAllMovies() {
-        return services.getMoviesList();
+
+    public Movie getMovieToAssign() {
+        return movieToAssign;
+    }
+
+    public void setMovieToAssign(Movie movieToAssign) {
+        this.movieToAssign = movieToAssign;
+    }
+
+    public List<Movie> getUnseenMovies() {
+        List<Movie> unseenMovies = new ArrayList<>();
+        for (Movie movie : services.getMoviesList()) {
+            if (!this.person.getMovies().containsValue(movie)) {
+                unseenMovies.add(movie);
+            }
+        }
+        return unseenMovies;
     }
 
     public String showPerson(Person person) {
-        if(person != null) {
+        if (person != null) {
             this.person = person;
             return "personDetails";
         } else {
             this.person = null;
             return "error";
+        }
+    }
+
+    /**
+     * Supprime un film de la personne
+     *
+     * @param movie film à supprimer
+     */
+    public void removeMovie(Movie movie) {
+        try {
+            person.removeMovie(movie);
+        } catch (UniqueException ex) {
+            Logger.getLogger(PersonDetailsBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void assignMovie() {
+        try {
+            person.addMovie(movieToAssign);
+        } catch (UniqueException ex) {
+            Logger.getLogger(PersonDetailsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -126,4 +126,18 @@ public class Person {
             throw new UniqueException("Ce film a déjà été vu par cette personne");
         }
     }
+    
+    public void removeMovie(Movie movie) throws UniqueException {
+        if(this.movies.get(movie.getId()) != null) {
+            this.movies.remove(movie.getId());
+            movie.removePerson(this);
+        } else {
+            throw new UniqueException("Ce film n'a pas été vu par cette peronne");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.lastName;
+    }
 }
