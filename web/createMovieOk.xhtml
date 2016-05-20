@@ -9,19 +9,21 @@
         <h:outputStylesheet name="css/cssLayout.css"/>
     </h:head>
     <h:body>
-        <div id="top">
-            <ui:insert name="top"><h:outputText value="#{msg.valide}" /></ui:insert>
-        </div>
-        <div id="content" class="center_content">
-            <h:outputText value="#{msg.confCreationFilm}" />
-            <br />
-            <br />
-            <h:form>
-                <h:commandButton action="back" value="#{msg.retourPageAcc}" />
-            </h:form>
-        </div>
-        <div id="bottom">
-            <ui:insert name="bottom">ODI</ui:insert>
-        </div>
+        <ui:composition template="resources/template/mainTemplate.xhtml">	
+
+            <ui:define name="header">
+                <h:outputText value="#{msg.valide}" />
+            </ui:define>
+
+            <ui:define name="content">	
+                <h:outputText value="#{msg.confCreationFilm}" />
+                <br />
+                <br />
+                <h:form>
+                    <h:commandButton action="back" value="#{msg.retourPageAcc}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
