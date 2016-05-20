@@ -10,52 +10,53 @@
         <h:outputStylesheet name="css/cssLayout.css"/>
     </h:head>
     <h:body>
-        <div id="top">
-            <ui:insert name="top"><h:outputText value="#{msg.detailPersonne}" /></ui:insert>
-        </div>
-        <div id="content" class="center_content">
+        <ui:composition template="resources/template/mainTemplate.xhtml">	
 
-            <h:panelGrid columns="2">
-                <h:outputLabel><h:outputText value="#{msg.id} :" /></h:outputLabel>
-                <h:outputText value="#{personDetailsBean.person.id}" />
-                <h:outputLabel><h:outputText value="#{msg.prenom} :" /></h:outputLabel>
-                <h:outputText value="#{personDetailsBean.person.firstName}" />
-                <h:outputLabel><h:outputText value="#{msg.nom} :" /></h:outputLabel>
-                <h:outputText value="#{personDetailsBean.person.lastName}" />
-            </h:panelGrid>
+            <ui:define name="header">
+                <h:outputText value="#{msg.detailPersonne}" />
+            </ui:define>
 
-            <h2><h:outputText value="#{msg.listeFilmPers}" /></h2>
+            <ui:define name="content">	
+                <h:panelGrid columns="2">
+                    <h:outputLabel><h:outputText value="#{msg.id} :" /></h:outputLabel>
+                    <h:outputText value="#{personDetailsBean.person.id}" />
+                    <h:outputLabel><h:outputText value="#{msg.prenom} :" /></h:outputLabel>
+                    <h:outputText value="#{personDetailsBean.person.firstName}" />
+                    <h:outputLabel><h:outputText value="#{msg.nom} :" /></h:outputLabel>
+                    <h:outputText value="#{personDetailsBean.person.lastName}" />
+                </h:panelGrid>
 
-            <h:dataTable value="#{personDetailsBean.movies}" var="movie" id="dtMovies">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg.id}" />
-                    </f:facet>
-                    <h:outputText value="#{movie.id}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg.nom}" />
-                    </f:facet> 
-                    <h:form>
-                        <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
-                    </h:form>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg.producteur}" />
-                    </f:facet>
-                    <h:outputText value="#{movie.producer}" />
-                </h:column>
-            </h:dataTable>
-            <br />
-            <br />
-            <h:form>
-                <h:commandButton action="back" value="#{msg.retourPageAcc}" />
-            </h:form>
-        </div>
-        <div id="bottom">
-            <ui:insert name="bottom">ODI</ui:insert>
-        </div>
+                <h2><h:outputText value="#{msg.listeFilmPers}" /></h2>
+
+                <h:dataTable value="#{personDetailsBean.movies}" var="movie" id="dtMovies">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.id}" />
+                        </f:facet>
+                        <h:outputText value="#{movie.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.nom}" />
+                        </f:facet> 
+                        <h:form>
+                            <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg.producteur}" />
+                        </f:facet>
+                        <h:outputText value="#{movie.producer}" />
+                    </h:column>
+                </h:dataTable>
+                <br />
+                <br />
+                <h:form>
+                    <h:commandButton action="back" value="#{msg.retourPageAcc}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
