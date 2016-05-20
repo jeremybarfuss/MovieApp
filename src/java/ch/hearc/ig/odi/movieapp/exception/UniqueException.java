@@ -6,7 +6,11 @@ package ch.hearc.ig.odi.movieapp.exception;
  */
 public class UniqueException extends Exception {
     public UniqueException() {
-        System.out.println("Cette personne a déjà vu ce film");
+        super();
+    }
+    
+    public UniqueException(String message) {
+        super(message);
     }
 
 }

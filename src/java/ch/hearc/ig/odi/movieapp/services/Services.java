@@ -30,7 +30,6 @@ public class Services implements Serializable {
      * avoir des données de test.
      */
     public Services() {
-        System.out.println("new class services");
         people = new LinkedHashMap<>();
         people.put(1l, new Person(1l, "Lara", "Clette"));
         people.put(2l, new Person(2l, "Homer", "Dalors"));

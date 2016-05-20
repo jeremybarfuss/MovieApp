@@ -123,7 +123,7 @@ public class Person {
             this.movies.put(movie.getId(), movie);
             movie.addPerson(this);
         } else {
-            throw new UniqueException();
+            throw new UniqueException("Ce film a déjà été vu par cette personne");
         }
     }
 }
