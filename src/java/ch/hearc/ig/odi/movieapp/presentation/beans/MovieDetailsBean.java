@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 /**
@@ -18,13 +18,14 @@ import javax.inject.Inject;
  * @author jeremy.barfuss
  */
 @Named(value = "movieDetailsBean")
-@SessionScoped
+@ViewScoped
 public class MovieDetailsBean implements Serializable {
 
     @Inject
     Services services;
     private Movie movie;
     private Person personToAssign;
+    private long currentMovieID;
 
     /**
      * Constructeur par défaut du bean
@@ -48,6 +49,14 @@ public class MovieDetailsBean implements Serializable {
         this.personToAssign = personToAssign;
     }
 
+    public long getCurrentMovieID() {
+        return currentMovieID;
+    }
+
+    public void setCurrentMovieID(long currentMovieID) {
+        this.currentMovieID = currentMovieID;
+    }
+    
     public List<Person> getPersons() {
         return new ArrayList(this.movie.getPersons().values());
     }
@@ -61,15 +70,9 @@ public class MovieDetailsBean implements Serializable {
         }
         return unseenPersons;
     }
-
-    public String showMovie(Movie movie) {
-        if (movie != null) {
-            this.movie = movie;
-            return "movieDetails";
-        } else {
-            this.movie = null;
-            return "error";
-        }
+    
+    public void initMovie() {
+        this.movie = services.getMovieById(currentMovieID);
     }
     
     /**

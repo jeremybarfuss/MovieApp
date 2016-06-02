@@ -81,7 +81,7 @@ public class CreateMovieBean {
     
     public String addMovie() {
         services.addMovie(id, name, producer);
-        return "valider";
+        return "/home.xhtml";
     }
 
 }

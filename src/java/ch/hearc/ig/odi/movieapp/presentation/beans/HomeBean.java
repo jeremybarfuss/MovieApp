@@ -5,7 +5,7 @@ import ch.hearc.ig.odi.movieapp.business.Person;
 import ch.hearc.ig.odi.movieapp.services.Services;
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 
@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * @author jeremy.barfuss
  */
 @Named(value = "homeBean")
-@RequestScoped
+@ViewScoped
 public class HomeBean implements Serializable {
 
     @Inject

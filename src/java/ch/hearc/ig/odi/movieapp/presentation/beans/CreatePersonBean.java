@@ -83,7 +83,7 @@ public class CreatePersonBean {
 
     public String addPerson() {
         services.addPerson(this.id, this.firstName, this.lastName);
-        return "valider";
+        return "/home.xhtml";
     }
 
 }

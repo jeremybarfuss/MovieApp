@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title><h:outputText value="#{msg.ajouterFilm}" /></title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/resources/template/mainTemplate.xhtml">	
+
+            <ui:define name="header">
+                <h:outputText value="#{msg.ajouterFilm}" />
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{msg.id} : " for="id" />
+                        <h:inputText id="id" required="true" requiredMessage="#{msg.numRequis}" value="#{createMovieBean.id}" />
+                        <h:outputLabel value="#{msg.nom} : " for="nom" />
+                        <h:inputText id="nom" required="true" requiredMessage="#{msg.nomFilmRequis}" value="#{createMovieBean.name}" />
+                        <h:outputLabel value="#{msg.producteur} : " for="producteur" />
+                        <h:inputText id="producteur" required="true" requiredMessage="#{msg.prodRequis}" value="#{createMovieBean.producer}" />
+                    </h:panelGrid>
+                    <h:commandButton type="reset" value="#{msg.reinit}" />
+                    <h:commandButton action="#{createMovieBean.addMovie()}" value="#{msg.valider}" />
+                </h:form>
+
+                <h:button outcome="/home.xhtml" value="#{msg.annuler}" />
+                <h:messages />
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

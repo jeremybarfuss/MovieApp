@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -20,11 +20,12 @@ import javax.inject.Inject;
  * @version 1.0, 21.04.2016
  */
 @Named(value = "personDetailsBean")
-@SessionScoped
+@ViewScoped
 public class PersonDetailsBean implements Serializable {
 
     @Inject
     Services services;
+    private long currentPersonID;
     private Person person;
     private Movie movieToAssign;
 
@@ -32,6 +33,14 @@ public class PersonDetailsBean implements Serializable {
      * Constructeur par défaut du bean
      */
     public PersonDetailsBean() {
+    }
+
+    public long getCurrentPersonID() {
+        return currentPersonID;
+    }
+
+    public void setCurrentPersonID(long currentPersonId) {
+        this.currentPersonID = currentPersonId;
     }
 
     /**
@@ -74,14 +83,8 @@ public class PersonDetailsBean implements Serializable {
         return unseenMovies;
     }
 
-    public String showPerson(Person person) {
-        if (person != null) {
-            this.person = person;
-            return "personDetails";
-        } else {
-            this.person = null;
-            return "error";
-        }
+    public void initPerson() {
+        this.person = services.getPersonById(currentPersonID);
     }
 
     /**

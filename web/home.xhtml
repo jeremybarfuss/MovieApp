@@ -7,8 +7,6 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
         <title><h:outputText value="#{msg.pageAcceuil}" /></title>
     </h:head>
 
@@ -32,17 +30,17 @@
                         <f:facet name="header">
                             <h:outputText value="#{msg.prenom}" />
                         </f:facet>
-                        <h:form>
-                            <h:commandLink value="#{person.firstName}" action="#{personDetailsBean.showPerson(person)}" />
-                        </h:form>
+                        <h:link outcome="people/details.xhtml" value="#{person.firstName}">
+                            <f:param name="id" value="#{person.id}" />
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg.nom}" />
                         </f:facet>
-                        <h:form>
-                            <h:commandLink value="#{person.lastName}" action="#{personDetailsBean.showPerson(person)}" />
-                        </h:form>
+                        <h:link outcome="people/details.xhtml" value="#{person.lastName}">
+                            <f:param name="id" value="#{person.id}" />
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -52,9 +50,8 @@
                     </h:column>
                 </h:dataTable>
                 <br />
-                <h:form>
-                    <h:commandButton action="addPerson" value="#{msg.ajouterPerson}" />
-                </h:form>
+                
+                <h:button outcome="people/create.xhtml" value="#{msg.ajouterPerson}" />
 
                 <h2><h:outputText value="#{msg.listeFilm}" /></h2>
                 <h:dataTable value="#{homeBean.movies}" var="movie">
@@ -68,9 +65,9 @@
                         <f:facet name="header">
                             <h:outputText value="#{msg.nom}" />
                         </f:facet>
-                        <h:form>
-                            <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
-                        </h:form>
+                        <h:link outcome="movies/details.xhtml" value="#{movie.name}">
+                            <f:param name="id" value="#{movie.id}" />
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -86,9 +83,9 @@
                     </h:column>
                 </h:dataTable>
                 <br />
-                <h:form>
-                    <h:commandButton action="addMovie" value="#{msg.ajouterFilm}" /><br />
-                </h:form>
+                
+                
+                <h:button outcome="movies/create.xhtml" value="#{msg.ajouterFilm}" />
             </ui:define>
             
         </ui:composition>
